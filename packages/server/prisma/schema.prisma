@@ -1,0 +1,163 @@
+// Karya database schema - MVP (Phase 1)
+// Matches database-schema.md. MySQL 8+ via Prisma.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Users ───────────────────────────────────────────────
+
+model User {
+  id            String   @id @db.Char(36)
+  email         String   @unique(map: "idx_users_email") @db.VarChar(255)
+  passwordHash  String   @map("password_hash") @db.VarChar(255)
+  name          String   @db.VarChar(255)
+  timezone      String   @default("UTC") @db.VarChar(100)
+  emailVerified Boolean  @default(false) @map("email_verified")
+  createdAt     DateTime @default(now()) @map("created_at") @db.DateTime(3)
+  updatedAt     DateTime @updatedAt @map("updated_at") @db.DateTime(3)
+
+  projects      Project[]
+  labels        Label[]
+  refreshTokens RefreshToken[]
+  createdTasks  Task[]         @relation("TaskCreator")
+
+  @@map("users")
+}
+
+// ─── Projects ────────────────────────────────────────────
+
+model Project {
+  id        String   @id @db.Char(36)
+  userId    String   @map("user_id") @db.Char(36)
+  name      String   @db.VarChar(255)
+  color     String   @default("charcoal") @db.VarChar(50)
+  parentId  String?  @map("parent_id") @db.Char(36)
+  order     Int      @default(0)
+  viewStyle String   @default("list") @map("view_style") @db.VarChar(10)
+  isFavorite Boolean @default(false) @map("is_favorite")
+  isInbox   Boolean  @default(false) @map("is_inbox")
+  createdAt DateTime @default(now()) @map("created_at") @db.DateTime(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.DateTime(3)
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent   Project?  @relation("ProjectParent", fields: [parentId], references: [id], onDelete: SetNull)
+  children Project[] @relation("ProjectParent")
+  sections Section[]
+  tasks    Task[]
+
+  @@index([userId], map: "idx_projects_user")
+  @@index([userId, isFavorite], map: "idx_projects_user_favorite")
+  @@index([parentId], map: "idx_projects_parent")
+  @@fulltext([name], map: "idx_projects_search")
+  @@map("projects")
+}
+
+// ─── Sections ────────────────────────────────────────────
+
+model Section {
+  id          String   @id @db.Char(36)
+  projectId   String   @map("project_id") @db.Char(36)
+  name        String   @db.VarChar(255)
+  order       Int      @default(0)
+  isCollapsed Boolean  @default(false) @map("is_collapsed")
+  createdAt   DateTime @default(now()) @map("created_at") @db.DateTime(3)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.DateTime(3)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tasks   Task[]
+
+  @@index([projectId], map: "idx_sections_project")
+  @@map("sections")
+}
+
+// ─── Tasks ───────────────────────────────────────────────
+
+model Task {
+  id           String    @id @db.Char(36)
+  projectId    String    @map("project_id") @db.Char(36)
+  sectionId    String?   @map("section_id") @db.Char(36)
+  parentId     String?   @map("parent_id") @db.Char(36)
+  content      String    @db.VarChar(2000)
+  description  String?   @db.Text
+  priority     Int       @default(1) @db.TinyInt
+  dueDate      DateTime? @map("due_date") @db.Date
+  dueDatetime  DateTime? @map("due_datetime") @db.DateTime(0)
+  dueTimezone  String?   @map("due_timezone") @db.VarChar(100)
+  isCompleted  Boolean   @default(false) @map("is_completed")
+  completedAt  DateTime? @map("completed_at") @db.DateTime(3)
+  order        Int       @default(0)
+  creatorId    String    @map("creator_id") @db.Char(36)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.DateTime(3)
+  updatedAt    DateTime  @updatedAt @map("updated_at") @db.DateTime(3)
+
+  project  Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  section  Section?    @relation(fields: [sectionId], references: [id], onDelete: SetNull)
+  parent   Task?       @relation("TaskParent", fields: [parentId], references: [id], onDelete: Cascade)
+  subtasks Task[]      @relation("TaskParent")
+  creator  User        @relation("TaskCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  labels   TaskLabel[]
+
+  @@index([projectId], map: "idx_tasks_project")
+  @@index([sectionId], map: "idx_tasks_section")
+  @@index([parentId], map: "idx_tasks_parent")
+  @@index([creatorId], map: "idx_tasks_creator")
+  @@index([projectId, isCompleted], map: "idx_tasks_active")
+  @@index([dueDate, isCompleted], map: "idx_tasks_due_date")
+  @@index([dueDatetime, isCompleted], map: "idx_tasks_due_datetime")
+  @@fulltext([content, description], map: "idx_tasks_search")
+  @@map("tasks")
+}
+
+// ─── Labels ──────────────────────────────────────────────
+
+model Label {
+  id         String   @id @db.Char(36)
+  userId     String   @map("user_id") @db.Char(36)
+  name       String   @db.VarChar(255)
+  color      String   @default("charcoal") @db.VarChar(50)
+  order      Int      @default(0)
+  isFavorite Boolean  @default(false) @map("is_favorite")
+  createdAt  DateTime @default(now()) @map("created_at") @db.DateTime(3)
+
+  user  User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks TaskLabel[]
+
+  @@unique([userId, name], map: "idx_labels_user_name")
+  @@index([userId], map: "idx_labels_user")
+  @@map("labels")
+}
+
+// ─── Task Labels (join table) ────────────────────────────
+
+model TaskLabel {
+  taskId  String @map("task_id") @db.Char(36)
+  labelId String @map("label_id") @db.Char(36)
+
+  task  Task  @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  label Label @relation(fields: [labelId], references: [id], onDelete: Cascade)
+
+  @@id([taskId, labelId])
+  @@index([labelId], map: "idx_task_labels_label")
+  @@map("task_labels")
+}
+
+// ─── Refresh Tokens ──────────────────────────────────────
+
+model RefreshToken {
+  id        String   @id @db.Char(36)
+  userId    String   @map("user_id") @db.Char(36)
+  tokenHash String   @unique(map: "idx_refresh_tokens_hash") @map("token_hash") @db.VarChar(255)
+  expiresAt DateTime @map("expires_at") @db.DateTime(0)
+  createdAt DateTime @default(now()) @map("created_at") @db.DateTime(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "idx_refresh_tokens_user")
+  @@map("refresh_tokens")
+}

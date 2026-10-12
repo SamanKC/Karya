@@ -1,0 +1,52 @@
+/**
+ * Error codes matching the API error response format from api-contracts.md.
+ *
+ * Usage:
+ *   { error: { code: ErrorCode.VALIDATION_ERROR, message: "...", details: [...] } }
+ */
+
+export enum ErrorCode {
+  // Client errors
+  VALIDATION_ERROR = 'VALIDATION_ERROR',
+  UNAUTHORIZED = 'UNAUTHORIZED',
+  FORBIDDEN = 'FORBIDDEN',
+  NOT_FOUND = 'NOT_FOUND',
+  CONFLICT = 'CONFLICT',
+  RATE_LIMITED = 'RATE_LIMITED',
+
+  // Auth-specific
+  INVALID_CREDENTIALS = 'INVALID_CREDENTIALS',
+  EMAIL_NOT_VERIFIED = 'EMAIL_NOT_VERIFIED',
+  EMAIL_ALREADY_REGISTERED = 'EMAIL_ALREADY_REGISTERED',
+  INVALID_REFRESH_TOKEN = 'INVALID_REFRESH_TOKEN',
+  INVALID_VERIFICATION_TOKEN = 'INVALID_VERIFICATION_TOKEN',
+
+  // Business logic
+  CANNOT_DELETE_INBOX = 'CANNOT_DELETE_INBOX',
+  MAX_DEPTH_EXCEEDED = 'MAX_DEPTH_EXCEEDED',
+  LABEL_NAME_EXISTS = 'LABEL_NAME_EXISTS',
+  PARENT_NOT_IN_PROJECT = 'PARENT_NOT_IN_PROJECT',
+
+  // Server errors
+  INTERNAL_ERROR = 'INTERNAL_ERROR',
+}
+
+/** HTTP status codes mapped to common error codes. */
+export const ERROR_STATUS_MAP: Record<string, number> = {
+  [ErrorCode.VALIDATION_ERROR]: 400,
+  [ErrorCode.UNAUTHORIZED]: 401,
+  [ErrorCode.INVALID_CREDENTIALS]: 401,
+  [ErrorCode.INVALID_REFRESH_TOKEN]: 401,
+  [ErrorCode.INVALID_VERIFICATION_TOKEN]: 400,
+  [ErrorCode.EMAIL_NOT_VERIFIED]: 403,
+  [ErrorCode.FORBIDDEN]: 403,
+  [ErrorCode.NOT_FOUND]: 404,
+  [ErrorCode.CONFLICT]: 409,
+  [ErrorCode.EMAIL_ALREADY_REGISTERED]: 409,
+  [ErrorCode.LABEL_NAME_EXISTS]: 409,
+  [ErrorCode.RATE_LIMITED]: 429,
+  [ErrorCode.CANNOT_DELETE_INBOX]: 400,
+  [ErrorCode.MAX_DEPTH_EXCEEDED]: 400,
+  [ErrorCode.PARENT_NOT_IN_PROJECT]: 400,
+  [ErrorCode.INTERNAL_ERROR]: 500,
+};
