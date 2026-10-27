@@ -64,10 +64,10 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
       <div className="fixed inset-0 z-40 bg-black/20" onClick={onClose} />
 
       {/* Panel */}
-      <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-white shadow-xl flex flex-col animate-slide-in">
+      <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-surface-primary shadow-xl flex flex-col animate-slide-in">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-          <h2 className="text-base font-semibold text-gray-900">Task details</h2>
+        <div className="flex items-center justify-between border-b border-surface-border px-6 py-4">
+          <h2 className="text-base font-semibold text-ink">Task details</h2>
           <button onClick={onClose} className="btn-icon" aria-label="Close">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -79,7 +79,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
         <div className="flex-1 overflow-y-auto px-6 py-4 space-y-5">
           {/* Content */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Task name</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Task name</label>
             <input
               type="text"
               value={content}
@@ -90,7 +90,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
 
           {/* Description */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Description</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Description</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -102,7 +102,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
 
           {/* Project */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Project</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Project</label>
             <select
               value={projectId}
               onChange={(e) => setProjectId(e.target.value)}
@@ -116,7 +116,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
 
           {/* Priority */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Priority</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Priority</label>
             <div className="flex gap-2">
               {([...PRIORITY_VALUES] as number[]).reverse().map((val) => (
                 <button
@@ -126,7 +126,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
                     rounded-lg px-3 py-1.5 text-xs font-medium border transition-colors
                     ${priority === val
                       ? 'border-current'
-                      : 'border-gray-200 hover:border-gray-300'
+                      : 'border-surface-border hover:border-sidebar-muted'
                     }
                   `}
                   style={{
@@ -141,7 +141,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
 
           {/* Due date */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Due date</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Due date</label>
             <div className="flex items-center gap-2">
               <input
                 type="date"
@@ -152,7 +152,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
               {dueDate && (
                 <button
                   onClick={() => setDueDate('')}
-                  className="btn btn-ghost btn-sm text-gray-400"
+                  className="btn btn-ghost btn-sm text-sidebar-muted"
                 >
                   Clear
                 </button>
@@ -162,9 +162,9 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
 
           {/* Labels */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Labels</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Labels</label>
             {labels.length === 0 ? (
-              <p className="text-xs text-gray-400">No labels created yet</p>
+              <p className="text-xs text-sidebar-muted">No labels created yet</p>
             ) : (
               <div className="flex flex-wrap gap-2">
                 {labels.map((label) => {
@@ -198,7 +198,7 @@ export default function TaskDetailPanel({ task, onClose }: TaskDetailPanelProps)
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex gap-3">
+        <div className="border-t border-surface-border px-6 py-4 flex gap-3">
           <button onClick={handleSave} className="btn btn-primary flex-1" disabled={updateTask.isPending}>
             Save changes
           </button>

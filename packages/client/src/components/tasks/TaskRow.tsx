@@ -60,7 +60,7 @@ export default function TaskRow({ task, onSelect, depth = 0 }: TaskRowProps) {
 
   return (
     <div
-      className="group flex items-start gap-3 rounded-lg px-3 py-2 hover:bg-gray-50 cursor-pointer transition-colors"
+      className="group flex items-start gap-3 rounded-lg px-3 py-2 hover:bg-sidebar-hover cursor-pointer transition-colors"
       style={{ paddingLeft: `${12 + depth * 24}px` }}
       onClick={() => onSelect(task)}
       role="button"
@@ -72,8 +72,8 @@ export default function TaskRow({ task, onSelect, depth = 0 }: TaskRowProps) {
         onClick={handleToggle}
         className="mt-0.5 flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full border-2 transition-colors"
         style={{
-          borderColor: priorityColor === 'transparent' ? '#d1d5db' : priorityColor,
-          backgroundColor: task.isCompleted ? (priorityColor === 'transparent' ? '#d1d5db' : priorityColor) : 'transparent',
+          borderColor: priorityColor === 'transparent' ? '#c7c2b2' : priorityColor,
+          backgroundColor: task.isCompleted ? (priorityColor === 'transparent' ? '#c7c2b2' : priorityColor) : 'transparent',
         }}
         aria-label={task.isCompleted ? 'Reopen task' : 'Complete task'}
       >
@@ -86,7 +86,7 @@ export default function TaskRow({ task, onSelect, depth = 0 }: TaskRowProps) {
 
       {/* Content area */}
       <div className="flex-1 min-w-0">
-        <p className={`text-sm leading-5 ${task.isCompleted ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+        <p className={`text-sm leading-5 ${task.isCompleted ? 'line-through text-sidebar-muted' : 'text-ink'}`}>
           {task.content}
         </p>
 
@@ -95,9 +95,9 @@ export default function TaskRow({ task, onSelect, depth = 0 }: TaskRowProps) {
           {dueDateStr && (
             <span
               className={`text-xs ${
-                isDueOverdue ? 'text-red-600' :
+                isDueOverdue ? 'text-danger' :
                 isDueToday ? 'text-brand-500' :
-                'text-gray-500'
+                'text-sidebar-muted'
               }`}
             >
               {dueDateStr}
@@ -133,7 +133,7 @@ export default function TaskRow({ task, onSelect, depth = 0 }: TaskRowProps) {
         aria-label="Delete task"
         title="Delete task"
       >
-        <svg className="h-4 w-4 text-gray-400 hover:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className="h-4 w-4 text-sidebar-muted hover:text-danger" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
         </svg>
       </button>

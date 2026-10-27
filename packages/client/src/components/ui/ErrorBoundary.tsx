@@ -34,8 +34,8 @@ export default class ErrorBoundary extends Component<Props, State> {
 
       return (
         <div className="flex flex-col items-center justify-center min-h-[200px] px-4">
-          <h2 className="text-lg font-semibold text-gray-900">Something went wrong</h2>
-          <p className="mt-2 text-sm text-gray-500">{this.state.error?.message}</p>
+          <h2 className="text-lg font-semibold text-ink">Something went wrong</h2>
+          <p className="mt-2 text-sm text-sidebar-muted">{this.state.error?.message}</p>
           <button
             onClick={() => this.setState({ hasError: false, error: null })}
             className="mt-4 btn btn-primary btn-sm"

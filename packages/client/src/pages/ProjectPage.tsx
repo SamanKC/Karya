@@ -29,9 +29,9 @@ export default function ProjectPage() {
   if (projectLoading) {
     return (
       <div className="space-y-3 mt-8">
-        <div className="h-8 w-48 animate-pulse rounded bg-gray-100" />
-        <div className="h-10 animate-pulse rounded-lg bg-gray-100" />
-        <div className="h-10 animate-pulse rounded-lg bg-gray-100" />
+        <div className="h-8 w-48 animate-pulse rounded bg-sidebar-hover" />
+        <div className="h-10 animate-pulse rounded-lg bg-sidebar-hover" />
+        <div className="h-10 animate-pulse rounded-lg bg-sidebar-hover" />
       </div>
     );
   }
@@ -63,7 +63,7 @@ export default function ProjectPage() {
     <div>
       {/* Project header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-gray-900">
+        <h1 className="page-title">
           {project.isInbox ? 'Inbox' : project.name}
         </h1>
       </div>
@@ -112,7 +112,7 @@ export default function ProjectPage() {
         ) : (
           <button
             onClick={() => setShowNewSection(true)}
-            className="flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-brand-500 transition-colors"
+            className="flex items-center gap-2 px-3 py-2 text-sm text-sidebar-muted hover:text-brand-500 transition-colors"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />

@@ -19,29 +19,29 @@ export default function TodayPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-900">Today</h1>
-      <p className="mt-1 text-xs text-gray-400">
+      <h1 className="page-title">Today</h1>
+      <p className="mt-1 text-sm text-sidebar-muted">
         {new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
       </p>
 
       {isLoading && (
         <div className="mt-8 space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-10 animate-pulse rounded-lg bg-gray-100" />
+            <div key={i} className="h-10 animate-pulse rounded-lg bg-sidebar-hover" />
           ))}
         </div>
       )}
 
       {!isLoading && tasks.length === 0 && (
-        <div className="mt-12 text-center">
-          <p className="text-3xl">&#127881;</p>
-          <p className="mt-2 text-sm text-gray-500">All caught up for today!</p>
+        <div className="mt-16 text-center">
+          <p className="font-display text-2xl text-brand-500">All caught up</p>
+          <p className="mt-1 text-sm text-sidebar-muted">Nothing due today — enjoy the quiet.</p>
         </div>
       )}
 
       {!isLoading && overdue.length > 0 && (
-        <div className="mt-4">
-          <h2 className="px-3 text-xs font-semibold uppercase tracking-wider text-red-500">
+        <div className="mt-6">
+          <h2 className="section-label px-3 text-danger">
             Overdue ({overdue.length})
           </h2>
           <div className="mt-1">
@@ -53,9 +53,9 @@ export default function TodayPage() {
       )}
 
       {!isLoading && todayTasks.length > 0 && (
-        <div className="mt-4">
+        <div className="mt-6">
           {overdue.length > 0 && (
-            <h2 className="px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+            <h2 className="section-label px-3">
               Today ({todayTasks.length})
             </h2>
           )}

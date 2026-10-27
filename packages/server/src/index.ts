@@ -40,6 +40,7 @@ app.use(helmet({
       frameAncestors: ["'none'"],
       baseUri: ["'self'"],
       formAction: ["'self'"],
+      upgradeInsecureRequests: null, // this app may run over plain HTTP (e.g. behind no TLS on a LAN); don't force HTTPS
     },
   } : false,
   hsts: isProduction ? { maxAge: 31536000, includeSubDomains: true } : false,

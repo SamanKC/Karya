@@ -2,7 +2,8 @@
 // Matches database-schema.md. MySQL 8+ via Prisma.
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextIndex"]
 }
 
 datasource db {

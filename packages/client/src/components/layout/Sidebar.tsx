@@ -149,7 +149,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
           <div className="flex items-center justify-between px-3">
             <button
               onClick={() => setProjectsExpanded((v) => !v)}
-              className="text-2xs font-medium uppercase tracking-wider text-sidebar-muted hover:text-sidebar-text transition-colors"
+              className="text-xs font-semibold text-sidebar-muted hover:text-sidebar-text transition-colors"
             >
               Projects
             </button>
@@ -207,7 +207,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
         <section className="mt-5">
           <button
             onClick={() => setLabelsExpanded((v) => !v)}
-            className="px-3 text-2xs font-medium uppercase tracking-wider text-sidebar-muted hover:text-sidebar-text transition-colors"
+            className="px-3 text-xs font-semibold text-sidebar-muted hover:text-sidebar-text transition-colors"
           >
             Labels
           </button>
@@ -236,7 +236,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
         {/* Shortcuts hint */}
         <div className="flex items-center justify-between px-2 py-1">
           <span className="text-[10px] text-sidebar-muted">Quick Add</span>
-          <kbd className="rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] text-gray-500">Q</kbd>
+          <kbd className="rounded bg-sidebar-active px-1.5 py-0.5 font-mono text-[10px] text-sidebar-muted">Q</kbd>
         </div>
         <div className="flex items-center gap-2">
           <Link
@@ -368,7 +368,7 @@ function ProjectItem({
 
 function SectionHeader({ label }: { label: string }) {
   return (
-    <p className="px-3 text-2xs font-medium uppercase tracking-wider text-sidebar-muted">
+    <p className="px-3 text-xs font-semibold text-sidebar-muted">
       {label}
     </p>
   );

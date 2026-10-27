@@ -56,7 +56,7 @@ export default function AppLayout() {
 
   return (
     <SidebarContext.Provider value={{ isOpen: sidebarOpen, toggle, close }}>
-      <div className="flex h-screen overflow-hidden bg-white">
+      <div className="flex h-screen overflow-hidden bg-paper">
         {/* Mobile overlay */}
         {sidebarOpen && (
           <div
@@ -81,13 +81,13 @@ export default function AppLayout() {
         {/* Main content */}
         <main className="flex-1 overflow-y-auto">
           {/* Mobile header with hamburger */}
-          <div className="sticky top-0 z-10 flex items-center gap-3 border-b border-surface-border bg-white px-4 py-3 md:hidden">
+          <div className="sticky top-0 z-10 flex items-center gap-3 border-b border-surface-border bg-surface-primary px-4 py-3 md:hidden">
             <button onClick={toggle} className="btn-icon" aria-label="Open sidebar">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <span className="text-sm font-medium text-gray-900">{APP_NAME}</span>
+            <span className="wordmark text-base">{APP_NAME}</span>
           </div>
 
           <div className="mx-auto max-w-content px-4 py-6 md:px-8">

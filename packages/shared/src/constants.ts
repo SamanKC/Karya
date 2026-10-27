@@ -22,9 +22,9 @@ export const PRIORITY_MAP = {
 export const PRIORITY_VALUES = [1, 2, 3, 4] as const;
 
 export const PRIORITY_COLORS: Record<number, string> = {
-  4: '#d1453b', // red
-  3: '#eb8909', // orange
-  2: '#246fe0', // blue
+  4: '#c2542f', // clay
+  3: '#c98a2c', // gold
+  2: '#3d6ea5', // slate blue
   1: 'transparent',
 };
 

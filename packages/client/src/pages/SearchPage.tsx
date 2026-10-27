@@ -37,12 +37,12 @@ export default function SearchPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-900">Search</h1>
+      <h1 className="page-title">Search</h1>
 
       <div className="mt-4">
         <div className="relative">
           <svg
-            className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+            className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sidebar-muted"
             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -61,14 +61,14 @@ export default function SearchPage() {
       {isLoading && debouncedQuery.length >= 2 && (
         <div className="mt-6 space-y-3">
           {[1, 2].map((i) => (
-            <div key={i} className="h-10 animate-pulse rounded-lg bg-gray-100" />
+            <div key={i} className="h-10 animate-pulse rounded-lg bg-sidebar-hover" />
           ))}
         </div>
       )}
 
       {!isLoading && debouncedQuery.length >= 2 && !hasResults && (
         <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500">No results for "{debouncedQuery}"</p>
+          <p className="text-sm text-sidebar-muted">No results for "{debouncedQuery}"</p>
         </div>
       )}
 
@@ -77,7 +77,7 @@ export default function SearchPage() {
           {/* Projects */}
           {projects.length > 0 && (
             <div>
-              <h2 className="px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <h2 className="section-label px-3">
                 Projects ({projects.length})
               </h2>
               <ul className="mt-1 space-y-0.5">
@@ -87,7 +87,7 @@ export default function SearchPage() {
                     <li key={p.id}>
                       <a
                         href={`/project/${p.id}`}
-                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-ink hover:bg-sidebar-hover transition-colors"
                       >
                         <span
                           className="inline-block h-2.5 w-2.5 rounded-full flex-shrink-0"
@@ -105,7 +105,7 @@ export default function SearchPage() {
           {/* Tasks */}
           {tasks.length > 0 && (
             <div className={projects.length > 0 ? 'mt-6' : ''}>
-              <h2 className="px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <h2 className="section-label px-3">
                 Tasks ({tasks.length})
               </h2>
               <div className="mt-1">

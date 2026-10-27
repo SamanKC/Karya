@@ -110,7 +110,7 @@ export default function QuickAddModal({
 
       {/* Modal */}
       <div
-        className="relative w-full max-w-lg rounded-xl bg-white shadow-2xl animate-fade-in"
+        className="relative w-full max-w-lg rounded-xl bg-surface-primary shadow-2xl animate-fade-in"
         onKeyDown={(e) => {
           if (e.key === 'Escape') {
             e.stopPropagation();
@@ -132,7 +132,7 @@ export default function QuickAddModal({
               }
             }}
             placeholder="Task name"
-            className="w-full text-base font-medium text-gray-900 placeholder-gray-400 outline-none"
+            className="w-full text-base font-medium text-ink placeholder-gray-400 outline-none"
             autoComplete="off"
           />
 
@@ -143,12 +143,12 @@ export default function QuickAddModal({
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Description"
               rows={2}
-              className="mt-2 w-full resize-none text-sm text-gray-600 placeholder-gray-400 outline-none"
+              className="mt-2 w-full resize-none text-sm text-sidebar-muted placeholder-gray-400 outline-none"
             />
           ) : (
             <button
               onClick={() => setShowDescription(true)}
-              className="mt-1 text-xs text-gray-400 hover:text-gray-600 transition-colors"
+              className="mt-1 text-xs text-sidebar-muted hover:text-sidebar-muted transition-colors"
             >
               + Add description
             </button>
@@ -167,14 +167,14 @@ export default function QuickAddModal({
                 h-8 rounded-md border px-2.5 text-xs outline-none transition-colors
                 ${dueDate
                   ? 'border-brand-200 bg-brand-50 text-brand-700'
-                  : 'border-gray-200 text-gray-500 hover:border-gray-300'
+                  : 'border-surface-border text-sidebar-muted hover:border-sidebar-muted'
                 }
               `}
             />
           </div>
 
           {/* Priority */}
-          <div className="flex items-center rounded-md border border-gray-200">
+          <div className="flex items-center rounded-md border border-surface-border">
             {([...PRIORITY_VALUES] as number[]).reverse().map((p) => {
               const isSelected = priority === p;
               const hex = p === 1 ? '#6b7280' : PRIORITY_COLORS[p];
@@ -185,7 +185,7 @@ export default function QuickAddModal({
                   title={PRIORITY_LABELS[p]}
                   className={`
                     h-8 px-2 text-xs font-medium transition-colors first:rounded-l-md last:rounded-r-md
-                    ${isSelected ? 'ring-1 ring-inset' : 'hover:bg-gray-50'}
+                    ${isSelected ? 'ring-1 ring-inset' : 'hover:bg-sidebar-hover'}
                   `}
                   style={{
                     color: hex,
@@ -202,7 +202,7 @@ export default function QuickAddModal({
           <select
             value={projectId}
             onChange={(e) => setProjectId(e.target.value)}
-            className="h-8 rounded-md border border-gray-200 px-2 text-xs text-gray-600 outline-none hover:border-gray-300"
+            className="h-8 rounded-md border border-surface-border px-2 text-xs text-sidebar-muted outline-none hover:border-sidebar-muted"
           >
             {inbox && <option value={inbox.id}>Inbox</option>}
             {regularProjects.map((p: ProjectResponse) => (
@@ -219,7 +219,7 @@ export default function QuickAddModal({
               flex h-8 items-center gap-1 rounded-md border px-2.5 text-xs transition-colors
               ${selectedLabelIds.length > 0
                 ? 'border-brand-200 bg-brand-50 text-brand-700'
-                : 'border-gray-200 text-gray-500 hover:border-gray-300'
+                : 'border-surface-border text-sidebar-muted hover:border-sidebar-muted'
               }
             `}
           >
@@ -230,7 +230,7 @@ export default function QuickAddModal({
 
         {/* Labels panel (expandable) */}
         {showLabels && labels.length > 0 && (
-          <div className="mx-5 mt-2 flex flex-wrap gap-1.5 rounded-lg border border-gray-100 bg-gray-50 p-3">
+          <div className="mx-5 mt-2 flex flex-wrap gap-1.5 rounded-lg border border-surface-border bg-sidebar-hover p-3">
             {labels.map((label) => {
               const hex = COLOR_HEX[label.color as ColorName] ?? '#808080';
               const isSelected = selectedLabelIds.includes(label.id);
@@ -242,7 +242,7 @@ export default function QuickAddModal({
                     flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition-colors
                     ${isSelected
                       ? 'bg-brand-100 text-brand-700 ring-1 ring-brand-300'
-                      : 'bg-white text-gray-600 hover:bg-gray-100'
+                      : 'bg-surface-primary text-sidebar-muted hover:bg-sidebar-hover'
                     }
                   `}
                 >
@@ -258,9 +258,9 @@ export default function QuickAddModal({
         )}
 
         {/* Footer */}
-        <div className="mt-4 flex items-center justify-between rounded-b-xl border-t border-gray-100 bg-gray-50 px-5 py-3">
-          <span className="text-xs text-gray-400">
-            Press <kbd className="rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px]">Enter</kbd> to add
+        <div className="mt-4 flex items-center justify-between rounded-b-xl border-t border-surface-border bg-sidebar-hover px-5 py-3">
+          <span className="text-xs text-sidebar-muted">
+            Press <kbd className="rounded bg-sidebar-active px-1.5 py-0.5 font-mono text-[10px]">Enter</kbd> to add
           </span>
           <div className="flex items-center gap-2">
             <button

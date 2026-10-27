@@ -2,6 +2,9 @@
 FROM node:22-slim AS deps
 WORKDIR /app
 
+# Prisma needs openssl to detect the libssl version at generate/runtime
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 # Copy workspace manifests
 COPY package.json package-lock.json ./
 COPY packages/shared/package.json packages/shared/
@@ -36,6 +39,9 @@ RUN npm run --workspace=packages/client build
 # ── Stage 4: Production runtime ───────────────────────────
 FROM node:22-slim AS runtime
 WORKDIR /app
+
+# Prisma needs openssl to detect the libssl version at runtime
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 # Install production deps only
 COPY package.json package-lock.json ./

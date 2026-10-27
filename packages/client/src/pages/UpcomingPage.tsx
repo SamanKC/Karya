@@ -29,25 +29,25 @@ export default function UpcomingPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-900">Upcoming</h1>
+      <h1 className="page-title">Upcoming</h1>
 
       {isLoading && (
         <div className="mt-8 space-y-3">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-10 animate-pulse rounded-lg bg-gray-100" />
+            <div key={i} className="h-10 animate-pulse rounded-lg bg-sidebar-hover" />
           ))}
         </div>
       )}
 
       {!isLoading && overdue.length === 0 && dateGroups.length === 0 && (
         <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500">No upcoming tasks in the next 14 days.</p>
+          <p className="text-sm text-sidebar-muted">No upcoming tasks in the next 14 days.</p>
         </div>
       )}
 
       {!isLoading && overdue.length > 0 && (
         <div className="mt-4">
-          <h2 className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-red-500">
+          <h2 className="section-label px-3 py-2 text-danger">
             Overdue ({overdue.length})
           </h2>
           {overdue.map((task) => (
@@ -58,7 +58,7 @@ export default function UpcomingPage() {
 
       {!isLoading && dateGroups.map((group) => (
         <div key={group.date} className="mt-4">
-          <h2 className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-gray-500 border-b border-gray-100">
+          <h2 className="section-label px-3 py-2 border-b border-surface-border">
             {formatDateHeader(group.date)}
           </h2>
           {group.tasks.map((task) => (

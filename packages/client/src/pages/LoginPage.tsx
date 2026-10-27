@@ -55,25 +55,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-paper px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{APP_NAME}</h1>
-          <p className="mt-1 text-sm text-gray-500">Plan less. Accomplish more.</p>
+          <h1 className="wordmark">{APP_NAME}</h1>
+          <p className="mt-1 text-sm text-sidebar-muted">Plan less. Accomplish more.</p>
         </div>
 
-        <div className="rounded-xl bg-white p-6 shadow-sm border border-surface-border">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Log in</h2>
+        <div className="rounded-xl bg-surface-primary p-6 shadow-sm border border-surface-border">
+          <h2 className="mb-4 text-base font-semibold text-ink">Log in</h2>
 
           {error && (
-            <div className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-danger">
+            <div className="mb-4 rounded-lg bg-[#f7e9e4] px-4 py-3 text-sm text-danger">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-ink mb-1">
                 Email
               </label>
               <input
@@ -89,7 +89,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-ink mb-1">
                 Password
               </label>
               <input
@@ -109,7 +109,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="mt-4 text-center text-sm text-gray-500">
+          <p className="mt-4 text-center text-sm text-sidebar-muted">
             Don't have an account?{' '}
             <Link to="/signup" className="link">
               Sign up

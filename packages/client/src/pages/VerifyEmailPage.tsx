@@ -60,27 +60,27 @@ export default function VerifyEmailPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-paper px-4">
       <div className="w-full max-w-sm text-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">{APP_NAME}</h1>
+        <h1 className="wordmark mb-6">{APP_NAME}</h1>
 
-        <div className="rounded-xl bg-white p-8 shadow-sm border border-surface-border">
+        <div className="rounded-xl bg-surface-primary p-8 shadow-sm border border-surface-border">
           {status === 'verifying' && (
             <>
               <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-brand-500 border-t-transparent" />
-              <p className="text-sm text-gray-600">Verifying your email...</p>
+              <p className="text-sm text-sidebar-muted">Verifying your email...</p>
             </>
           )}
 
           {status === 'success' && (
             <>
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                <svg className="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-100">
+                <svg className="h-6 w-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-lg font-semibold text-gray-900">Email verified</h2>
-              <p className="mt-2 text-sm text-gray-600">
+              <h2 className="text-lg font-semibold text-ink">Email verified</h2>
+              <p className="mt-2 text-sm text-sidebar-muted">
                 Your account is ready. You can now log in.
               </p>
               <Link to="/login" className="btn-primary mt-6 inline-block">
@@ -91,13 +91,13 @@ export default function VerifyEmailPage() {
 
           {status === 'error' && (
             <>
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#f7e2dc]">
                 <svg className="h-6 w-6 text-danger" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
-              <h2 className="text-lg font-semibold text-gray-900">Verification failed</h2>
-              <p className="mt-2 text-sm text-gray-600">{errorMsg}</p>
+              <h2 className="text-lg font-semibold text-ink">Verification failed</h2>
+              <p className="mt-2 text-sm text-sidebar-muted">{errorMsg}</p>
 
               <div className="mt-6 space-y-3">
                 <input
@@ -124,8 +124,8 @@ export default function VerifyEmailPage() {
 
           {status === 'no-token' && (
             <>
-              <h2 className="text-lg font-semibold text-gray-900">Missing verification token</h2>
-              <p className="mt-2 text-sm text-gray-600">
+              <h2 className="text-lg font-semibold text-ink">Missing verification token</h2>
+              <p className="mt-2 text-sm text-sidebar-muted">
                 This link appears to be invalid. Check your email for the correct verification link.
               </p>
               <Link to="/login" className="btn-primary mt-6 inline-block">

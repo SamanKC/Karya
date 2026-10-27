@@ -52,14 +52,14 @@ export default function SettingsPage() {
 
   return (
     <div className="max-w-md">
-      <h1 className="text-xl font-bold text-gray-900">Settings</h1>
+      <h1 className="page-title">Settings</h1>
 
       {/* Profile section */}
       <section className="mt-6">
-        <h2 className="text-sm font-semibold text-gray-700">Profile</h2>
+        <h2 className="text-sm font-semibold text-ink">Profile</h2>
         <div className="mt-3 space-y-4">
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Name</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Name</label>
             <input
               type="text"
               value={name}
@@ -68,7 +68,7 @@ export default function SettingsPage() {
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Timezone</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Timezone</label>
             <select
               value={timezone}
               onChange={(e) => setTimezone(e.target.value)}
@@ -93,11 +93,11 @@ export default function SettingsPage() {
       </section>
 
       {/* Password section */}
-      <section className="mt-10 border-t border-gray-200 pt-6">
-        <h2 className="text-sm font-semibold text-gray-700">Change password</h2>
+      <section className="mt-10 border-t border-surface-border pt-6">
+        <h2 className="text-sm font-semibold text-ink">Change password</h2>
         <div className="mt-3 space-y-4">
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Current password</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">Current password</label>
             <input
               type="password"
               value={currentPassword}
@@ -106,7 +106,7 @@ export default function SettingsPage() {
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">New password</label>
+            <label className="block text-xs font-medium text-sidebar-muted mb-1">New password</label>
             <input
               type="password"
               value={newPassword}
@@ -115,7 +115,7 @@ export default function SettingsPage() {
               minLength={8}
             />
           </div>
-          {passwordError && <p className="text-xs text-red-600">{passwordError}</p>}
+          {passwordError && <p className="text-xs text-danger">{passwordError}</p>}
           <div className="flex items-center gap-3">
             <button
               onClick={handlePasswordSave}
@@ -130,10 +130,10 @@ export default function SettingsPage() {
       </section>
 
       {/* Account info */}
-      <section className="mt-10 border-t border-gray-200 pt-6">
-        <h2 className="text-sm font-semibold text-gray-700">Account</h2>
-        <p className="mt-2 text-xs text-gray-500">{user?.email}</p>
-        <p className="mt-1 text-xs text-gray-400">
+      <section className="mt-10 border-t border-surface-border pt-6">
+        <h2 className="text-sm font-semibold text-ink">Account</h2>
+        <p className="mt-2 text-xs text-sidebar-muted">{user?.email}</p>
+        <p className="mt-1 text-xs text-sidebar-muted">
           Member since {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'unknown'}
         </p>
       </section>

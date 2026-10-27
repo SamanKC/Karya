@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +12,11 @@
   }
 
   body {
-    @apply bg-white text-gray-900;
+    @apply bg-paper text-ink font-sans;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
   }
 
   /* Custom scrollbar for sidebar */
@@ -23,19 +29,34 @@
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 rounded-full;
+    @apply bg-surface-border rounded-full;
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400;
+    @apply bg-sidebar-muted;
   }
 }
 
 @layer components {
+  /* Page title — the one serif "voice" moment per screen */
+  .page-title {
+    @apply font-display text-[1.65rem] font-medium tracking-tight text-ink;
+  }
+
+  /* Wordmark — used on auth screens */
+  .wordmark {
+    @apply font-display text-[1.9rem] font-medium tracking-tight text-ink;
+  }
+
+  /* Section labels in the sidebar — sentence case, weight does the work, not all-caps tracking */
+  .section-label {
+    @apply text-xs font-semibold text-sidebar-muted;
+  }
+
   /* Form inputs */
   .input {
-    @apply w-full rounded-lg border border-surface-border px-3 py-2
-           text-sm text-gray-900 placeholder-gray-400
+    @apply w-full rounded-lg border border-surface-border bg-white px-3 py-2
+           text-sm text-ink placeholder-gray-400
            outline-none transition-colors
            focus:border-brand-500 focus:ring-1 focus:ring-brand-500;
   }
@@ -48,7 +69,7 @@
   .btn {
     @apply inline-flex items-center justify-center rounded-lg px-4 py-2
            text-sm font-medium transition-colors
-           focus:outline-none focus:ring-2 focus:ring-offset-2
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-paper
            disabled:cursor-not-allowed disabled:opacity-50;
   }
 
@@ -58,17 +79,17 @@
   }
 
   .btn-secondary {
-    @apply btn bg-gray-100 text-gray-700 hover:bg-gray-200
-           focus:ring-gray-500;
+    @apply btn bg-white text-ink border border-surface-border hover:bg-sidebar-hover
+           focus:ring-brand-500;
   }
 
   .btn-ghost {
-    @apply btn bg-transparent text-gray-600 hover:bg-gray-100
-           focus:ring-gray-400;
+    @apply btn bg-transparent text-sidebar-text hover:bg-sidebar-hover
+           focus:ring-brand-500;
   }
 
   .btn-danger {
-    @apply btn bg-danger text-white hover:bg-red-700
+    @apply btn bg-danger text-white hover:bg-[#9a3620]
            focus:ring-danger;
   }
 
@@ -78,7 +99,7 @@
 
   .btn-icon {
     @apply inline-flex items-center justify-center rounded-md p-1.5
-           text-gray-500 hover:bg-gray-100 hover:text-gray-700
+           text-sidebar-muted hover:bg-sidebar-hover hover:text-ink
            transition-colors focus:outline-none;
   }
 

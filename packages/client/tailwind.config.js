@@ -7,54 +7,60 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand
+        // Brand — deep pine, original to Karya (not a red task-app accent)
         brand: {
-          50: '#fef2f2',
-          100: '#fee2e2',
-          200: '#fecaca',
-          300: '#fca5a5',
-          400: '#f87171',
-          500: '#dc4c3e',  // primary (Karya red, inspired by task management apps)
-          600: '#c53727',
-          700: '#a52e1f',
-          800: '#862a1f',
-          900: '#6f2720',
+          50: '#eef6f2',
+          100: '#d6ebe0',
+          200: '#aed6c1',
+          300: '#7ebc9e',
+          400: '#49987a',
+          500: '#1f6f54',  // primary
+          600: '#195b45',
+          700: '#144836',
+          800: '#10392a',
+          900: '#0c2c21',
         },
-        // Sidebar and surface colors
+        // Sidebar and surface colors — warm paper, not cold grey
         sidebar: {
-          bg: '#fafafa',
-          hover: '#f0f0f0',
-          active: '#ffe8e4',
-          text: '#333333',
-          muted: '#808080',
+          bg: '#f6f4ee',
+          hover: '#ece8de',
+          active: '#dfe9e2',
+          text: '#2a2e29',
+          muted: '#837d6e',
         },
         surface: {
-          primary: '#ffffff',
-          secondary: '#fafafa',
-          border: '#e5e5e5',
-          hover: '#f5f5f5',
+          primary: '#fffefb',
+          secondary: '#f6f4ee',
+          border: '#e2ddd0',
+          hover: '#ece8de',
         },
-        // Priority colors (ADR-002)
+        // Priority colors (ADR-002) — clay / gold / pine, distinct hues
         priority: {
-          urgent: '#d1453b',
-          high: '#eb8909',
-          medium: '#246fe0',
+          urgent: '#c2542f',
+          high: '#c98a2c',
+          medium: '#1f6f54',
         },
         // Semantic
-        success: '#058527',
-        warning: '#eb8909',
-        danger: '#d1453b',
-        info: '#246fe0',
+        success: '#1f6f54',
+        warning: '#c98a2c',
+        danger: '#b5432a',
+        info: '#3d6ea5',
+        ink: '#1b2420',
+        paper: '#f6f4ee',
       },
       fontFamily: {
         sans: [
+          '"IBM Plex Sans"',
           '-apple-system',
           'BlinkMacSystemFont',
           '"Segoe UI"',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
           'sans-serif',
+        ],
+        display: [
+          '"Fraunces"',
+          'ui-serif',
+          'Georgia',
+          'serif',
         ],
       },
       fontSize: {

@@ -54,7 +54,7 @@ export default function TaskAddInline({
     return (
       <button
         onClick={() => setIsEditing(true)}
-        className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-400 hover:text-brand-500 hover:bg-gray-50 transition-colors"
+        className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-muted hover:text-brand-500 hover:bg-sidebar-hover transition-colors"
       >
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -65,7 +65,7 @@ export default function TaskAddInline({
   }
 
   return (
-    <div className="rounded-lg border border-gray-200 px-3 py-2">
+    <div className="rounded-lg border border-surface-border px-3 py-2">
       <input
         ref={inputRef}
         type="text"
@@ -82,7 +82,7 @@ export default function TaskAddInline({
           }
         }}
         placeholder="Task name"
-        className="w-full bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none"
+        className="w-full bg-transparent text-sm text-ink placeholder-gray-400 outline-none"
         disabled={createTask.isPending}
       />
       <div className="mt-2 flex items-center gap-2">

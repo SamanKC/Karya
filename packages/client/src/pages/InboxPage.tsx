@@ -25,20 +25,20 @@ export default function InboxPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-900">Inbox</h1>
+      <h1 className="page-title">Inbox</h1>
 
       {isLoading && (
         <div className="mt-8 space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-10 animate-pulse rounded-lg bg-gray-100" />
+            <div key={i} className="h-10 animate-pulse rounded-lg bg-sidebar-hover" />
           ))}
         </div>
       )}
 
       {!isLoading && topLevelTasks.length === 0 && inbox && (
         <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500">Your inbox is empty.</p>
-          <p className="mt-1 text-xs text-gray-400">Tasks without a project land here.</p>
+          <p className="text-sm text-sidebar-muted">Your inbox is empty.</p>
+          <p className="mt-1 text-xs text-sidebar-muted">Tasks without a project land here.</p>
         </div>
       )}
 
